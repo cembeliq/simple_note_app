@@ -29,26 +29,26 @@ class DatabaseHelper {
   static String _tableName = 'notes';
 
   Future<Database> _initializeDb() async {
-    io.Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentDirectory.path, "note_db.db");
-    var taskDb =
-    await openDatabase(path, version: 1);
-    return taskDb;
-    // var path = await getDatabasesPath();
-    // var db = openDatabase(
-    //   '$path/note_db.db',
-    //   onCreate: (db, version) async {
-    //     await db.execute(
-    //       '''CREATE TABLE $_tableName (
-    //       id INTEGER PRIMARY KEY,
-    //       title TEXT, description TEXT
-    //     )''',
-    //     );
-    //   },
-    //   version: 1,
-    // );
-    //
-    // return db;
+    // io.Directory documentDirectory = await getApplicationDocumentsDirectory();
+    // String path = join(documentDirectory.path, "note_db.db");
+    // var taskDb =
+    // await openDatabase(path, version: 1);
+    // return taskDb;
+    var path = await getDatabasesPath();
+    var db = openDatabase(
+      '$path/note_db.db',
+      onCreate: (db, version) async {
+        await db.execute(
+          '''CREATE TABLE $_tableName (
+          id INTEGER PRIMARY KEY,
+          title TEXT, description TEXT
+        )''',
+        );
+      },
+      version: 1,
+    );
+
+    return db;
   }
 
   Future<void> insertNote(Note note) async {
