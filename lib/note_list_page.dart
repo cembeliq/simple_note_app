@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:simple_notes_app/db_provider.dart';
 
 import 'note_add_update_page.dart';
+import 'note_add_update_page.dart';
 
 class NoteListPage extends StatelessWidget {
   @override
@@ -43,7 +44,7 @@ class NoteListPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => NoteListPage()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => NoteAddUpdatePage()));
         },
       ),
     );
